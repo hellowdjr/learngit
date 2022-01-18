@@ -107,10 +107,10 @@ $ git rm 文件名（后缀）
 $ git remote add origin https://github.com/hellowdjr/learngit.git
 ```
 
-15.把本地库的master分支内容推送到远程库（注意如果本地库内容为空会无法推送）
+15.把本地库的（master）分支内容推送到远程库（注意如果本地库内容为空会无法推送）
 
 ```
-$ git push -u origin master
+$ git push -u origin 分支名（master）
 ```
 
 -u参数还会把本地的`master`分支和远程的`master`分支关联起来，在以后的推送或者拉取时就可以简化命令。
@@ -161,6 +161,51 @@ $ git branch -d 分支名
 //删除分支
 ```
 
-### 疑问
+<img title="" src="file:///D:/Djr/GitNOTE/note_photo/微信图片_20220117112651.png" alt="" width="276" data-align="inline">   Fast forward模式<img title="" src="file:///D:/Djr/GitNOTE/note_photo/微信图片_20220117112241.png" alt="" data-align="inline" width="279">  普通模式合并，合并后有分支历史
+
+```
+$ git stash
+//保存未提交的工作区现场
+
+$ git stash list
+//查看保存的工作现场
+
+$ git stash pop
+//恢复工作区现场，并删除stash内容
+
+$ git stash apply   $ git stash drop
+//恢复工作区现场       //删除stash内容
+
+可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
+$ git stash apply stash@{0}
+
+$ git branch -D 分支名
+//强制删除未合并的分支
+
+$ git remote -v
+//查看远程库的详细信息
+
+$ git push origin 本地分支名
+//将本地分支推送到远程库的对应分支上
+
+$ git checkout -b branch-name origin/branch-name
+//在本地创建与远程分支对应的分支
+
+$ git branch --set-upstream branch-name origin/branch-name
+//设置本地分支与远程分支的链接
+
+$ git pull
+//拉取远程库中已经与当前分支链接的分支的内容，并且自动合并
+```
+
+- `master`分支是主分支，因此要时刻与远程同步；
+
+- `dev`分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+
+- bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+
+- feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
+
+疑问
 
 假如dev分支是main的前一个版本，为什么此时在main分支中操作$ git merge dev会显示Already up to date
