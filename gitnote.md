@@ -21,7 +21,7 @@ $ git init
 $ git add 文件名（有后缀）
 ```
 
-​                                                        //注意文件名不能有空格
+​      //注意文件名中不能有空格                                                 
 
 ## 二、
 
@@ -58,7 +58,8 @@ $ git diff HEAD -- 文件名（加后缀）
 ```
 $ git reset --hard HEAD^               //HEAD^表示上一个版本
 
-$ git reset --hard e475af              //e475af是版本号的前几位                                          即commit id
+$ git reset --hard e475af              //e475af是版本号的前几位     
+                                     即commit id
 ```
 
 9.查看版本提交和回退的命令的历史记录
@@ -120,6 +121,8 @@ $ git push -u origin 分支名（master）
 ```
 $ git remote rm origin
 ```
+
+一个本地库可以与很多个远程库关联，但是要分别取上不同的远程库名字，
 
 #### 学习体会
 
@@ -209,3 +212,40 @@ $ git pull
 疑问
 
 假如dev分支是main的前一个版本，为什么此时在main分支中操作$ git merge dev会显示Already up to date
+
+## 七、标签
+
+### 创建标签
+
+```
+$ git tag 标签名
+//给当前分支的最近一次commit打标签
+
+$ git tag
+//查看所有标签
+
+$ git tag 标签名 commit id
+//对某次提交打标签
+
+$ git show 标签名
+//查看标签信息
+
+$ git tag -a 标签名 -m "说明文字" commit id
+//给某次commit打上标签并附说明文字
+```
+
+### 操作标签
+
+```
+$ git push origin 标签名
+//推送某个标签名到远程某个提交
+
+$ git push origin --tags
+//推送所有未推送的标签
+
+$ git tag -d 标签名
+//删除本地标签
+
+$ git push origin :refs/tags/标签名
+//删除远程标签
+```
